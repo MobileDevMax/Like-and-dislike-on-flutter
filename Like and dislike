@@ -1,0 +1,80 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Like and Dislike',
+      theme: ThemeData(primarySwatch: Colors.blue),
+      home: LikeDislikeScreen(),
+    );
+  }
+}
+
+class LikeDislikeScreen extends StatefulWidget {
+  @override
+  _LikeDislikeScreenState createState() => _LikeDislikeScreenState();
+}
+
+class _LikeDislikeScreenState extends State<LikeDislikeScreen> {
+  int _likes = 0;
+  int _dislikes = 0;
+
+  void _incrementLikes() {
+    setState(() {
+      _likes++;
+    });
+  }
+
+  void _incrementDislikes() {
+    setState(() {
+      _dislikes++;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Like and Dislike')),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  icon: Icon(Icons.thumb_up),
+                  color: Colors.green,
+                  onPressed: _incrementLikes,
+                  iconSize: 50,
+                ),
+                SizedBox(width: 20),
+                IconButton(
+                  icon: Icon(Icons.thumb_down),
+                  color: Colors.red,
+                  onPressed: _incrementDislikes,
+                  iconSize: 50,
+                ),
+              ],
+            ),
+            SizedBox(height: 20),
+            Text(
+              'Likes: $_likes',
+              style: TextStyle(fontSize: 24),
+            ),
+            SizedBox(height: 10),
+            Text(
+              'Dislikes: $_dislikes',
+              style: TextStyle(fontSize: 24),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
